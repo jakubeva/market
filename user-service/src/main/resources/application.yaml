@@ -1,0 +1,22 @@
+spring:
+    profiles:
+        active: prod
+    application:
+        name: user-service
+server:
+    port: 8080
+
+knife4j:
+    enable: true
+    openapi:
+        title: market用户服务接口文档
+        description: "market用户服务接口文档"
+        email: 850778435@qq.com
+        concat: ysm
+        version: v1.0.0
+        group:
+            default:
+                group-name: default
+                api-rule: package
+                api-rule-resources:
+                    - edu.npu.userservice.controller

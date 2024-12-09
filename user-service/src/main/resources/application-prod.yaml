@@ -1,0 +1,87 @@
+spring:
+    rabbitmq:
+        host: 10.13.0.113
+        username: admin
+        password: guest
+        port: 5672
+    mail:
+        default-encoding: utf-8
+        host: smtp.qq.com
+        username: 2231751148@qq.com
+        password: esdigoydukdcdjfa
+        protocol: smtp
+        port: 587
+    datasource:
+        username: root
+        password: 123456
+        url: jdbc:mysql://localhost:3306/shop?allowMultiQueries=true&characterEncoding=utf-8&useSSL=false
+        driver-class-name: com.mysql.cj.jdbc.Driver
+
+        # 数据源其他配置
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        filters: stat,log4j
+        maxPoolPreparedStatementPerConnectionSize: 20
+        useGlobalDataSourceStat: true
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+    thymeleaf:
+        suffix: .html
+        prefix:
+            classpath: /templates/
+
+        cache: false
+
+    jackson: #返回的日期字段的格式
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        serialization:
+            write-dates-as-timestamps: false # true 使用时间戳显示时间
+    http:
+        multipart:
+            max-file-size: 1000Mb
+            max-request-size: 1000Mb
+    data:
+        redis:
+            database: 0
+            host: 10.13.0.113
+            password: 123456
+            port: 6379
+#配置文件式开发
+mybatis:
+    #全局配置文件的位置
+    config-location: classpath:mybatis/mybatis-config.xml
+    #所有sql映射配置文件的位置
+    mapper-locations: classpath:mybatis/mapper/*.xml
+    #开启MyBatis的二级缓存
+    mybatis.configuration.cache-enabled: true
+
+#控制台看到执行的SQL语句
+#logging:
+#  level:
+#    com:
+#      mapper: debug
+
+server:
+    session:
+        timeout: 7200
+
+base-path: /home/file/
+
+# 集成支付宝
+alipay:
+    appId: 9021000122699508
+    privateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqXKPxjw1mSR6V7loWYj8LN0W6c0g5gbMAbrMLT/EqzZD+90XDAubd8+dU+ISmlJp2XXZbgG5WojeSlCu+/Ki9LA56Y6mw5BfWzuRXHL0+GFr1YFChVGqoQKNIL8W9G9R6vLgq0uoqlrPkzGwAZ2EgpC0kywYA8AMcXVzPXq1WS9+aJe2USm7e34v1ENq8d9fZAY6Jlh/GEzx7eQb63iUAK/+MVYgE5RooNI7ZQpHhFFJp5RndNvq/6IfkvAtoHeaIFCyv3CfsyMUYkMo18mRLHqvrv/b9ngTf9gJLeqM3f3s6+PfzIm7Zh/rsBPdLyPnzX4M9lawKO4yoxK01O5yTAgMBAAECggEAcTO1zKGd6cXUiRQk0JLgCXfk4YwRBgVlCHiGiJHKUwLdwk5VEMww1HNp2FB69KXyLYzVROAGcZLBEqlamEITbgCEblcjPuOR467+k9QI++X7KumhKlKJvNuWpDT6VDrV6ejVB7+20i3pw7MCYRJQu/vb84LkrmLN7l8reLAUxi3zRq1ePpGFy4+WWY4h7xIC2ZXqwahkkRGv0khAS1MGoDf6/wrMQFZuPF8C/q6WWA1rcUTZv04/tjRm/8K2rVEIfHrpmjFGgrsE4LmTBq7SNDrwsUkSYaeUEetzupbG2EX+N30fr1iPzPPi2aDrERppxGCN3+TMxaR+s3VCxnqmgQKBgQD2UPndz9xl9fx7mLGTbuIvCpjVIkZ+slp2YJ1FM8dIhp6P3irtH4AHwhtYmrwVzOCikPYSgzC3UVT2x2CtQHgxdl7qNs9w3NfINYuOcWSd011Zbkr9xagcIt7K7u/hTNs2t/ICmHg+LCF2xNVYeIYGxHCQGKXx56VJGdrDQQv+gwKBgQCxDzqolkXMuvSYJis+kntV67oU5m8sG8Aa5clIeFIJA+sxO24AS3RdUob69GwqihSUmiAV1eXRyOTlS3tbPSohD7Z+YXiwREBr4C8vNauQCa2WnA/pPILF57mSm8HX0F8M6lRNP28OhpSI6uWR4WiOUG13hu2hYjuROejpxGuMsQKBgERAy/wazQez0fKtrQcdgq9mUFM+3CnfYhHLU8kJP/9ozicveNWcFO4Ra2Jx/gxMaTKi2IzorWceslxvgup/Is8R7dsYtQKhL2na7IDcCvVwzD0rwrvvOVYSk4nIC9Bya4wODJGLjkYsFFnE0RlizECzzj0fl1wgxDwtXeEc9SXhAoGAf4/pQuyA/S70aWmWXk5KbWyXc9dQ4QZdMQO8MGn/MF+SYrXeWngCLfn3JXZTN5KjoSwpUZH5MVr7DfeDuAgpAgjAAe1Xdia2AwJQ/EI+iFdwqMFm9TKTROHd4LI2xbVpxXRNqBm7eUucV8hj/OXY3i8zrpmXOl37bHW8SC8rDQECgYEAns6BqzoOUqKt9/66YMOicooSoqacylL5CpAQJ9Ti1ynlfOD8uMCkcp9a/c9yHRRw7ZAVONv8un7cFx346lYaZBlveplLJvA7ugeT7Bd4R0KQ6TEV5h3TRg0JnbznMxavDcSEqGuJ7kqzAEeQlGlANYbb7fqXAucrL1Cq8N1g48U=
+    publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqlyj8Y8NZkkele5aFmI/CzdFunNIOYGzAG6zC0/xKs2Q/vdFwwLm3fPnVPiEppSadl12W4BuVqI3kpQrvvyovSwOemOpsOQX1s7kVxy9Phha9WBQoVRqqECjSC/FvRvUery4KtLqKpaz5MxsAGdhIKQtJMsGAPADHF1cz16tVkvfmiXtlEpu3t+L9RDavHfX2QGOiZYfxhM8e3kG+t4lACv/jFWIBOUaKDSO2UKR4RRSaeUZ3Tb6v+iH5LwLaB3miBQsr9wn7MjFGJDKNfJkSx6r67/2/Z4E3/YCS3qjN397Ovj38yJu2Yf67AT3S8j581+DPZWsCjuMqMStNTuckwIDAQAB
+    notifyUrl: http://42f7b0de.r5.cpolar.top/alipay/notify
+    returnUrl: http://localhost:8080
